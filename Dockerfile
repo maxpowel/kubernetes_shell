@@ -1,3 +1,5 @@
 FROM python:3.6-buster
-
-CMD ["/bin/bash"]
+RUN apt-get update && apt-get install -y virtualenv vim zsh
+RUN chsh -s $(which zsh)
+RUN yes | sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+CMD ["/bin/zsh"]
