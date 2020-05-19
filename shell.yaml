@@ -1,0 +1,19 @@
+apiVersion: v1 
+kind: Pod 
+metadata: 
+  name: shell 
+spec: 
+  #restartPolicy: Never
+  containers: 
+    - name: shell 
+      image: maxpowel/shell:latest 
+      stdin: true 
+      tty: true 
+      volumeMounts:
+      - name: scripts
+        mountPath: /root
+  volumes:
+  - name: scripts
+    awsElasticBlockStore:
+      volumeID: my-ebs-id-here
+      fsType: ext4
